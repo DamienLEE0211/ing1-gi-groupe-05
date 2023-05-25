@@ -1,16 +1,17 @@
 <template>
-  <FooterUser></FooterUser>
+  <MidUser></MidUser>
 </template>
 
 <script>
 //import HeaderUser from "./components/HeaderUser.vue";
-//import MidUser from "./components/MidUser.vue";
-import FooterUser from "./components/FooterUser.vue"
+
+import MidUser from "@/components/MidUser.vue";
+
 
 export default {
   name: 'App',
   components: {
-    FooterUser
+    MidUser,
   }
 }
 </script>

@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div id="mid" class="container">
+  <div id="mid">
     <span id="background-image"></span>
     <h1 id="H1-message">{{ message }}</h1>
     <button class="custom-button" @click="buttonClicked">Prochaine évenement</button>
