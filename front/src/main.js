@@ -1,13 +1,14 @@
+import './assets/main.css'
+
 import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import vuetify from './plugins/vuetify'
-import { loadFonts } from './plugins/webfontloader'
 import { createPinia } from 'pinia'
 
-loadFonts()
+import App from './App.vue'
+import router from './router'
 
-createApp(App).use(createPinia())
-  .use(router)
-  .use(vuetify)
-  .mount('#app')
+const app = createApp(App)
+
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')
