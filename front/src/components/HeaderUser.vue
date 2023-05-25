@@ -99,6 +99,7 @@ a{
 #connexion-icon,#message-icon{
   width: 50px;
 }
+
 body,html {
   margin: 0;
   padding: 0;
