@@ -1,18 +1,21 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+  <MidUser></MidUser>
 </template>
 
 <script>
+//import HeaderUser from "./components/HeaderUser.vue";
+
+import MidUser from "@/components/MidUser.vue";
+
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  components: {
+    MidUser,
+  }
 }
 </script>
+
+<style>
+
+</style>
