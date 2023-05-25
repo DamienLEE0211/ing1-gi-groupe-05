@@ -8,39 +8,63 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <header>
-        <img src="http://iapau.org/wp-content/uploads/2021/05/iapau_round.png"  alt="Association IA Pau" id="logo">
-        <nav id="top-nav">
-            <a href="acceuil.html">Accueil</a>
-            <a href="contact.html">QCM</a>
-            <a href="DataChallenge.html">Data Chanllenge</a>
 
-            <div id="top-icon">
-                <a href="connexion.html">
-                    <img id="connexion-icon" src="../img/connexion.png" alt="connexion">
-                </a>
-                <a href="message.html">
-                    <img id="message-icon" src="../img/message.png" alt="message">
-                </a>
-                <a href="CreerCompte.html">
-                    <img id="CreerCompte" src="../img/pannier.png" alt="CreerCompte">
-                </a>
-            </div>
-        </nav>
-    
-        
-    </header>
+<nav id="top-nav">
+    <img src="http://iapau.org/wp-content/uploads/2021/05/iapau_round.png"  alt="Association IA Pau" id="logo">
+    <ul id="top-list">
+        <li v-for="link in links" id="nav-items">
+            <a :href="link.url">
+                {{ link.text }}
+            </a>
+        </li>
 
-    <div id="mid">
-        
+    </ul>
+
+    <div id="top-icon">
+        <a href="connexion.html">
+            <img id="connexion-icon" src="../img/connexion.png" alt="connexion">
+        </a>
+        <a href="message.html">
+            <img id="message-icon" src="../img/message.png" alt="message">
+        </a>
     </div>
-
-        
-
-    <div id="footer">
-        <p style="font-size: 20px">Copyright Data Chanllenge</p>
-        <p style="font-size: 15px">Webmaster CYtech</p>
+</nav>
+<div id="mid" class="container">
+    <h1 id="H1-message">{{ message }}</h1>
+    <button class="custom-button" @click="buttonClicked">Prochaine évenement</button>
+</div>
+<div id="footer">
+    <h2>#IAPAU</h2>
+    <div id="footer-links">
+        <a v-for="webmaster in webmasters" :key="webmaster.id" :style="{ fontSize: webmaster.fontSize + 'px' }">{{ webmaster.name }}</a>
     </div>
+</div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                links: [
+                    { text: 'Accueil', url: 'acceuil.html' },
+                    { text: 'QCM', url: 'qcm.html' },
+                    { text: 'Data Challenge', url: 'datachallenge.html' }
+                ],
+                message: 'IA PAU - DATA CHALLENGE',
+                webmasters: [
+                    { id: 1, name: "L'association", fontSize: 18 },
+                    { id: 2, name: "Des question?", fontSize: 18 },
+                    { id: 3, name: 'Nous contacter', fontSize: 18 }
+                ]
+            };
+        },
+        methods: {
+            buttonClicked() {
+                alert('Button clicked!');
+            }
+        },
+    }).mount('body');
+</script>
+
 
 
 </body>
