@@ -1,17 +1,24 @@
 <template>
-  <MidUser></MidUser>
+  <div>
+    <U1MidTop></U1MidTop>
+    <U1MidBot></U1MidBot>
+  </div>
+
 </template>
 
 <script>
-//import HeaderUser from "./components/HeaderUser.vue";
 
-import MidUser from "@/components/MidUser.vue";
+import U1MidTop from "@/components/U1MidTop.vue";
+import U1MidBot from "@/components/U1MidBot.vue";
 
 
 export default {
   name: 'App',
   components: {
-    MidUser,
+    U1MidTop,
+    U1MidBot,
+
+
   }
 }
 </script>
