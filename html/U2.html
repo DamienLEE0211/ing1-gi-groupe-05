@@ -2,7 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" href="../css/accueil.css">
 <link rel="stylesheet" href="../css/use.css">
-<link rel="stylesheet" href="../css/p1.css">
+<link rel="stylesheet" href="../css/U2.css">
 
 
 <head>
@@ -31,38 +31,17 @@
       <img id="message-icon" src="../front/img/message.png" alt="message">
     </a>
   </div>
+
 </nav>
-
-<div class="P1-mid">
-  <div id="P1-midtop">
-    <div id="first-block">
-      <div id="img-block">
-        <img :src="project1.image" alt="Image projet">
-      </div>
-
-      <div id="ressources">
-        <h2>Ressources : </h2>
-        <a v-for="(lien, index) in liens" :key="index" :href="lien.url">{{ lien.label }}</a>
-      </div>
-    </div>
-
-    <div id="second-block">
-      <h1 id="text-projet">Nom projet</h1>
-      <p id="description">Description du projet</p>
-      <button id="BTN-question" @click="buttonClicked">Questionaires</button>
-    </div>
-    <div id="third-block">
-      <div id="inside-third-block">
-        <h1 id="contact">Contact</h1>
-        <button id="BTN-message" @click="buttonClicked">Message</button>
-        <h1>Equipe</h1>
-        <p>nom captitaine</p>
-        <p>coéquipé 2</p>
-        <p>coéquipé 3</p>
-
-      </div>
-    </div>
+<div class="Q1-mid">
+  <div id="container-classement">
+    <h1>Informations personnels</h1>
+    <h2>Prénom nom</h2>
+    <h2>Ecole / Entreprise</h2>
+    <h2>Email</h2>
+    <h2>Numéro</h2>
   </div>
+
 </div>
 
 <div id="footer">
@@ -85,13 +64,12 @@
         project1: {
           image: "path/to/your/image.jpg",
         },
-        liens: [
-          { label: "lien 1", url: "" },
-          { label: "lien 2", url: "" },
-          { label: "lien 3", url: "" },
-          { label: "lien 4", url: "" },
+        resources: [
+          { id: 1, name: "lien 1", link: "https://example.com/link1" },
+          { id: 2, name: "lien 2", link: "https://example.com/link2" },
+          { id: 3, name: "lien 3", link: "https://example.com/link3" },
+          { id: 4, name: "lien 4", link: "https://example.com/link4" },
         ],
-
         projectName: "Nom projet",
         projectDescription: "Description du projet",
         captainName: "nom capitaine",
