@@ -13,8 +13,8 @@ export default {
     data() {
         return {
             webmasters: [
-                { id: 1, name: "Des questions ?",lien:"/faq"},
-                { id: 2, name: 'Nous contacter',lien:"/contact"}
+                { id: 1, name: "Des questions ?",lien:""},
+                { id: 2, name: 'Nous contacter',lien:""}
             ]
         }
     }

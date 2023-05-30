@@ -16,14 +16,14 @@
       <a href=""
         ><img
           class="imgprofil"
-          src="../assets/Profil.png"
+          src="@/assets/logospagesadmin/Profil.png"
           alt="Photo de profil"
           id="imgprofil"
           width="50"
       /></a>
       <a class="imgmsg" href=""
         ><img
-          src="../assets/Messagerie.png"
+          src="@/assets/logospagesadmin/Messagerie.png"
           alt="Photo de messagerie"
           id="imgmsg"
           width="50"
@@ -37,9 +37,9 @@ export default {
   data() {
     return {
       nav: [
-        { nom: "Accueil", lien: "/" },
-        { nom: "Utilisateurs", lien: "/utilisateurs" },
-        { nom: "Data Challenges", lien: "/datachallenges" }
+        { nom: "Accueil", lien: "/admin/:id" },
+        { nom: "Utilisateurs", lien: "/admin/:id/:user/modification-utilisateur" },
+        { nom: "Data Challenges", lien: "/admin/:id/:event/modification-evenement" }
       ],
     };
   },
@@ -85,6 +85,7 @@ export default {
 
 .logoaccueil{
     margin-left:80px;
+    padding:10px;
 }
 
 .nav_buttons {
@@ -93,6 +94,7 @@ export default {
 
 .nav_icons {
   display: flex;
+  align-items: center;
   margin-right: 80px;
 }
 
