@@ -3,20 +3,19 @@ export default {
   data() {
     return {
 
-          project1: {
+          projects: [{
             image: "", // Provide the image source
             name: "Nom", // Replace with the actual name
             dates: "Dates" // Replace with the actual dates
           },
-          project2: {
+           {
             image: "", // Provide the image source
             name: "Nom", // Replace with the actual name
             dates: "Dates" // Replace with the actual dates
-          },
+          }],
           challengeText: "S'inscrire à nouvelle challenge",
         }
       }
-
 };
 
 </script>
@@ -26,15 +25,10 @@ export default {
     <div id="div-project">
       <p id="txt-mes-projets">Mes projets</p>
       <div id="Three-box-contains">
-        <div class="each-project">
-          <img :src="project1.image" alt="Image projet">
-          <p>{{ project1.name }}</p>
-          <p>{{ project1.dates }}</p>
-        </div>
-        <div class="each-project">
-          <img :src="project2.image" alt="Image projet">
-          <p>{{ project2.name }}</p>
-          <p>{{ project2.dates }}</p>
+        <div v-for="project in projects" class="each-project" v-bind:key="project.name">
+          <img :src="project.image" alt="Image projet">
+          <p>{{ project.name }}</p>
+          <p>{{ project.dates }}</p>
         </div>
         <div class="each-project">
           <p>{{ challengeText }}</p>

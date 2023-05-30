@@ -40,11 +40,8 @@
             </div>
 
             <div id="ressources">
-                <h2>Ressources : </h2>
-                <a href="">lien 1</a>
-                <a href="">lien 2</a>
-                <a href="">lien 3</a>
-                <a href="">lien 4</a>
+                <h2>Ressources:</h2>
+                <a v-for="(lien, index) in liens" :key="index" :href="lien.url">{{ lien.label }}</a>
             </div>
         </div>
 
@@ -109,6 +106,12 @@
                     name: "Nom",
                     dates: "Dates"
                 },
+                liens: [
+                    { label: "lien 1", url: "" },
+                    { label: "lien 2", url: "" },
+                    { label: "lien 3", url: "" },
+                    { label: "lien 4", url: "" },
+                ],
                 challengeText: "S'inscrire à nouvelle challenge",
 
                 webmasters: [

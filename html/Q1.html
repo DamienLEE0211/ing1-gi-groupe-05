@@ -31,16 +31,13 @@
       <img id="message-icon" src="../front/img/message.png" alt="message">
     </a>
   </div>
-
 </nav>
+
 <div class="Q1-mid">
   <div id="container-classement">
     <h1>Classement</h1>
-    <h2>1- nom équipe 1</h2>
-    <h2>2- nom équipe 2</h2>
-    <h2>3- nom équipe 3</h2>
+    <h2 v-for="(team, index) in teams" :key="index">{{ index + 1 }}- {{ team }}</h2>
   </div>
-
 </div>
 
 <div id="footer">
@@ -60,26 +57,13 @@
           {text: 'QCM', url: 'qcm.html'},
           {text: 'Data Challenge', url: 'datachallenge.html'}
         ],
-        project1: {
-          image: "path/to/your/image.jpg",
-        },
-        resources: [
-          { id: 1, name: "lien 1", link: "https://example.com/link1" },
-          { id: 2, name: "lien 2", link: "https://example.com/link2" },
-          { id: 3, name: "lien 3", link: "https://example.com/link3" },
-          { id: 4, name: "lien 4", link: "https://example.com/link4" },
-        ],
-        projectName: "Nom projet",
-        projectDescription: "Description du projet",
-        captainName: "nom capitaine",
-        teammate2: "coéquipé 2",
-        teammate3: "coéquipé 3",
+        teams: ["nom équipe 1", "nom équipe 2", "nom équipe 3"],
 
         webmasters: [
           {id: 1, name: "L'association", fontSize: 18},
           {id: 2, name: "Des question?", fontSize: 18},
           {id: 3, name: 'Nous contacter', fontSize: 18}
-        ]
+        ],
       };
     },
     methods: {

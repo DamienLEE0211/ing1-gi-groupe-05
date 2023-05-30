@@ -11,6 +11,9 @@
     color: white;
     padding-top: 4em;
 }
-#container-classement h1,h2{
+#container-classement h1{
     margin-bottom: 1em;
+}
+#container-classement h2{
+    margin-bottom: 2em;
 }
