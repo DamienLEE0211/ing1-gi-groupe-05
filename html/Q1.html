@@ -1,10 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="../css/accueil.css">
+<link rel="stylesheet" href="../css/use.css">
+<link rel="stylesheet" href="../css/Q1.css">
+
+
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Data Chanllenge</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-$END$
+
+<nav id="top-nav">
+  <img src="http://iapau.org/wp-content/uploads/2021/05/iapau_round.png" alt="Association IA Pau" id="logo">
+  <ul id="top-list">
+    <li v-for="link in links" id="nav-items">
+      <a :href="link.url">
+        {{ link.text }}
+      </a>
+    </li>
+
+  </ul>
+
+  <div id="top-icon">
+    <a href="connexion.html">
+      <img id="connexion-icon" src="../front/img/connexion.png" alt="connexion">
+    </a>
+    <a href="message.html">
+      <img id="message-icon" src="../front/img/message.png" alt="message">
+    </a>
+  </div>
+
+</nav>
+<div class="Q1-mid">
+  <div id="container-classement">
+    <h1>Classement</h1>
+    <h2>1- nom équipe 1</h2>
+    <h2>2- nom équipe 2</h2>
+    <h2>3- nom équipe 3</h2>
+  </div>
+
+</div>
+
+<div id="footer">
+  <h2>#IAPAU</h2>
+  <div id="footer-links">
+    <a v-for="webmaster in webmasters" :key="webmaster.id"
+       :style="{ fontSize: webmaster.fontSize + 'px' }">{{ webmaster.name }}</a>
+  </div>
+</div>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        links: [
+          {text: 'Accueil', url: 'acceuil.html'},
+          {text: 'QCM', url: 'qcm.html'},
+          {text: 'Data Challenge', url: 'datachallenge.html'}
+        ],
+        project1: {
+          image: "path/to/your/image.jpg",
+        },
+        resources: [
+          { id: 1, name: "lien 1", link: "https://example.com/link1" },
+          { id: 2, name: "lien 2", link: "https://example.com/link2" },
+          { id: 3, name: "lien 3", link: "https://example.com/link3" },
+          { id: 4, name: "lien 4", link: "https://example.com/link4" },
+        ],
+        projectName: "Nom projet",
+        projectDescription: "Description du projet",
+        captainName: "nom capitaine",
+        teammate2: "coéquipé 2",
+        teammate3: "coéquipé 3",
+
+        webmasters: [
+          {id: 1, name: "L'association", fontSize: 18},
+          {id: 2, name: "Des question?", fontSize: 18},
+          {id: 3, name: 'Nous contacter', fontSize: 18}
+        ]
+      };
+    },
+    methods: {
+      buttonClicked() {
+        alert('Button clicked!');
+      }
+    },
+  }).mount('body');
+</script>
+
+
 </body>
 </html>
