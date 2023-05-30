@@ -1,0 +1,78 @@
+#containers{
+    width: 100%;
+    margin-left: 4em;
+}
+#info-perso{
+    color: white;
+}
+#info-user{
+    display: flex;
+    color: white;
+    font-size: 18px;
+}
+#info-user p{
+    margin-right: 1em;
+}
+
+
+#info-ecole{
+    color: white;
+    font-size: 18px;
+}
+
+
+button{
+    margin-right: 2em;
+}
+
+#BTN-modif-info,#BTN-cherche-chall{
+
+    background-color: #B2D3C2;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px ;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    margin-top: 4em;
+    transform: translate(0, -80%);
+}
+
+#second-mid{
+    background-color: #B2D3C2;
+    height: 50%;
+    width: 80%;
+}
+
+#div-project{
+    text-align: center;
+    margin-top: -1%;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+
+    margin-left: 2%;
+}
+
+#txt-mes-projets{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#Three-box-contains{
+    padding-left: 5em;
+    padding-right: 5em;
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+.each-project{
+    padding-top: 1em;
+    justify-items: center;
+    width: 10em;
+    height: 15em;
+    background-color: #B2D3C2;
+    display: block;
+}
