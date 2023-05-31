@@ -45,14 +45,17 @@ export default {
   width: 80%;
 }
 
+#txt-mes-projets{
+  margin: 0;
+  padding-top: 1em;
+}
+
 #div-project{
   text-align: center;
-  margin-top: -1%;
   background-color: white;
   height: 100%;
   width: 100%;
-
-  margin-left: 2%;
+  clip-path: polygon(0 3%, 100% 0%, 100% 97%, 0% 100%);
 }
 
 #txt-mes-projets{
