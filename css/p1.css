@@ -138,3 +138,17 @@
     margin-right: 0;
     align-items: center;
 }
+#coequipe-list {
+    /* New styles to center the list */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+    list-style: none;
+    padding: 0;
+}
+
+#coequipe-list li {
+    /* Additional styles for list items */
+    margin-bottom: 0.5em;
+}

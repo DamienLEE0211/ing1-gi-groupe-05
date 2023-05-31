@@ -56,8 +56,11 @@
                 <button id="BTN-message" @click="buttonClicked">Message</button>
                 <h1>Equipe</h1>
                 <p>nom captitaine</p>
-                <p>coéquipé 2</p>
-                <p>coéquipé 3</p>
+                <ul id="coequipe-list">
+                    <li v-for="(coequipe, index) in coequipes" :key="index">
+                        {{ coequipe }}
+                    </li>
+                </ul>
                 <button id="BTN-invitation" @click="buttonClicked">Inviter</button>
                 <a id="supp-team" href="" >supprimer l'équipe</a>
             </div>
@@ -91,21 +94,18 @@
                     {text: 'QCM', url: 'qcm.html'},
                     {text: 'Data Challenge', url: 'datachallenge.html'}
                 ],
-                firstName: 'Prénom',
-                lastName: 'Nom',
-                username: 'Utilisateur',
-                school: 'Ecole / Entreprise',
+
+                coequipes: [
+                    "coéquipé 2",
+                    "coéquipé 3"
+                ],
 
                 project1: {
                     image: "",
                     name: "Nom",
                     dates: "Dates"
                 },
-                project2: {
-                    image: "",
-                    name: "Nom",
-                    dates: "Dates"
-                },
+
                 liens: [
                     { label: "lien 1", url: "" },
                     { label: "lien 2", url: "" },

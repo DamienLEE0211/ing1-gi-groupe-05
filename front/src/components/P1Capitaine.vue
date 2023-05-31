@@ -22,11 +22,14 @@
           <h1 id="contact">Contact</h1>
           <button id="BTN-message" @click="buttonClicked('Message')">Message</button>
           <h1>Equipe</h1>
-          <p>nom capitaine</p>
-          <p>coéquipé 2</p>
-          <p>coéquipé 3</p>
-          <button id="BTN-invitation" @click="buttonClicked('Inviter')">Inviter</button>
-          <a id="supp-team" href="">supprimer l'équipe</a>
+          <p v-if="userRole === 1">nom capitaine</p>
+          <ul id="coequipe-list">
+            <li v-for="(coequipe, index) in coequipes" :key="index">
+              {{ coequipe }}
+            </li>
+          </ul>
+          <button v-if="userRole === 1" id="BTN-invitation" @click="buttonClicked('Inviter')">Inviter</button>
+          <a v-if="userRole === 1" id="supp-team" href="">supprimer l'équipe</a>
         </div>
       </div>
     </div>
@@ -45,9 +48,18 @@
 export default {
   data() {
     return {
+      userRole :0,
+
       project1: {
         image: "path/to/image.jpg",
+        name: "Nom",
+        dates: "Dates"
       },
+
+      coequipes: [
+        "coéquipé 2",
+        "coéquipé 3"
+      ],
       liens: [
         { label: "lien 1", url: "" },
         { label: "lien 2", url: "" },
