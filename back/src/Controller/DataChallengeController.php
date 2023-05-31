@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DataChallengeController extends AbstractController 
 {
-    #[Route('api/challenges', name: 'app_data_challenge', methods: ['GET'])]
+    #[Route('api/challenges', name: 'app_get_all_datachallenges', methods: ['GET'])]
     public function getAllChallenge(DataChallengeRepository $challenge): JsonResponse
     {
         $challengeList = $challenge->findAll();
@@ -26,8 +26,7 @@ class DataChallengeController extends AbstractController
         
     }
 
-    #[Route('api/challenge/{id}', name: 'app_data_challenge_id', methods : ['GET']) ]
-
+    #[Route('api/challenge/{id}', name: 'app_get_datachallenge_by_id', methods : ['GET']) ]
     public function getChallengeById(DataChallengeRepository $challenge, $id): JsonResponse
     {
         $challengeList = $challenge->findBy(['id' => $id]);
@@ -71,6 +70,54 @@ class DataChallengeController extends AbstractController
             $challengeRepo->remove($challenge);
             $entityManager->flush();
             return new JsonResponse("Challenge supprimé", 200, [], true);
+        } else {
+            return new JsonResponse("Challenge non trouvé", 404, [], true);
+        }
+    }
+
+    #[Route('api/challenge/name/{name}', name: 'app_data_challenge_delete_by_name', methods: ['DELETE'])]
+    public function deleteChallengeByName(DataChallengeRepository $challengeRepo, $name, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $this -> denyAccessUnlessGranted('ROLE_ADMIN');
+        $challenge = $challengeRepo->findOneBy(['name' => $name]);
+        if ($challenge) {
+            $challengeRepo->remove($challenge);
+            $entityManager->flush();
+            return new JsonResponse("Challenge supprimé", 200, [], true);
+        } else {
+            return new JsonResponse("Challenge non trouvé", 404, [], true);
+        }
+    }
+
+    #[Route('api/challenge/type/{type}', name: 'app_get_by_type', methods : ['GET']) ]
+    public function getChallengeByType(DataChallengeRepository $challenge, $type): JsonResponse
+    {
+        $challengeList = $challenge->findBy(['type' => $type]);
+        $data = [];
+        for ($i=0; $i < count($challengeList); $i++) { 
+            $data[$i] = $challengeList[$i]->toArray();
+        }
+        $data = json_encode($data);
+        return new JsonResponse($data, 200, [], true);
+        
+    }
+
+    #[Route('api/challenge/{id}', name: 'app_data_challenge_put', methods: ['PUT'])]
+    public function putChallenge(DataChallengeRepository $challengeRepo, $id, Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $this -> denyAccessUnlessGranted('ROLE_ADMIN');
+        $challenge = $challengeRepo->findOneBy(['id' => $id]);
+        if ($challenge) {
+            $data = json_decode($request->getContent(), true);
+            $challenge->setName($data['name']);
+            $challenge->setDescription($data['description']);
+            $challenge->setStartDate($data['startDate']);
+            $challenge->setEndDate($data['endDate']);
+            $challenge->setImage($data['image']);
+            $challenge->setType($data['type']);
+            $challengeRepo->save($challenge);
+            $entityManager->flush();
+            return new JsonResponse("Challenge modifié", 200, [], true);
         } else {
             return new JsonResponse("Challenge non trouvé", 404, [], true);
         }

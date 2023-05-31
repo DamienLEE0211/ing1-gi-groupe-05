@@ -36,6 +36,9 @@ class QuizAnswer
     #[ORM\JoinColumn(nullable: false)]
     private ?Team $id_team = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $result = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +140,17 @@ class QuizAnswer
             'id_quizz' => $this->getIdQuizz()->getId(),
             'id_team' => $this->getIdTeam()->getId(),
         ];
+    }
+
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+
+    public function setResult(?string $result): self
+    {
+        $this->result = $result;
+
+        return $this;
     }
 }

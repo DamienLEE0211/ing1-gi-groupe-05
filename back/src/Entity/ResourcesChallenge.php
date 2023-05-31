@@ -28,6 +28,17 @@ class ResourcesChallenge
         return $this->id;
     }
 
+    public function toArray(): array
+    {
+        $data = [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'URL' => $this->getURL(),
+            'id_challenge' => $this->getIdChallenge()->getId(),
+        ];
+        return $data;
+    }
+
     public function getName(): ?string
     {
         return $this->name;

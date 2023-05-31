@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class QuizAnswerController extends AbstractController
 {
-    #[Route('api/quizanswers', name: 'app_quizz_answer', methods: ['GET'])]
+    #[Route('api/quizanswers', name: 'app_get_all_quizanswers', methods: ['GET'])]
     public function getAllQuizAnswer(QuizAnswerRepository $quizAnswer): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_GESTIONNAIRE');
@@ -28,7 +28,7 @@ class QuizAnswerController extends AbstractController
         
     }
 
-    #[Route('api/quizanswer/{id}', name: 'app_quiz_answer_id', methods: ['GET'])]
+    #[Route('api/quizanswer/{id}', name: 'app_get_quizanswer_by_id', methods: ['GET'])]
     public function getQuizAnswerById(QuizAnswerRepository $quizAnswer, $id): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_GESTIONNAIRE');
@@ -42,7 +42,7 @@ class QuizAnswerController extends AbstractController
         
     }
 
-    #[Route('api/quizanswer/quiz/{id}', name: 'app_quiz_answer_id_quiz', methods: ['GET'])]
+    #[Route('api/quizanswer/quiz/{id}', name: 'app_get_all_quizzanswers_by_quiz_id', methods: ['GET'])]
     public function getQuizAnswerByQuizId(QuizAnswerRepository $quizAnswer, $id): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_GESTIONNAIRE');
@@ -56,7 +56,7 @@ class QuizAnswerController extends AbstractController
         
     }
 
-    #[Route('api/quizanswers/team/{id}', name: 'app_quizz_answer_id', methods: ['GET'])]
+    #[Route('api/quizanswers/team/{id}', name: 'app_get_all_quizanswers_by_team_id', methods: ['GET'])]
     public function getQuizAnswerByQuizIdAndTeamId(QuizAnswerRepository $quizAnswer, $id, Security $security ): JsonResponse
     {
         $user = $security->getUser();
@@ -73,7 +73,7 @@ class QuizAnswerController extends AbstractController
         
     }
 
-    #[Route('api/quizanswers/quiz/{id}/team/{teamId}', name: 'app_quiz_answ_id', methods: ['GET'])]
+    #[Route('api/quizanswers/quiz/{id}/team/{teamId}', name: 'app_get_quizanswer_by_team_and_quiz_id', methods: ['GET'])]
     public function getQuizAnswerByQuizIdAndTeamIdAndUserId(QuizAnswerRepository $quizAnswer, $id, $teamId, Security $security ): JsonResponse
     {
         $user = $security->getUser();
@@ -131,6 +131,53 @@ class QuizAnswerController extends AbstractController
             $entityManager->remove($quizAnswerList[0]);
             $entityManager->flush();
             return new JsonResponse("QuizAnswer supprimé", 200, [], true);
+        } else {
+            return new JsonResponse("QuizAnswer non trouvé", 404, [], true);
+        }
+    }
+
+    #[Route('api/quizanswer/{id}', name: 'app_quiz_answer_update', methods: ['PUT'])]
+    public function updateQuizAnswer(QuizAnswerRepository $quizAnswer, Security $security, $id, Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_STUDENT');
+        // on verifie si l'utilisateur est dans l'equipe qui a répondu au quiz
+        $user = $security->getUser();
+        $quizAnswerList = $quizAnswer->findBy(['id' => $id]);
+        if(!$user->isMember($quizAnswerList[0]->getIdTeam()->getId())){
+            return new JsonResponse("Vous n'avez pas accès à cette ressource", 403, [], true);
+        }
+        if($quizAnswerList){
+            $data = json_decode($request->getContent(), true);
+            empty($data['answer1']) ? true : $quizAnswerList[0]->setAnswer1($data['answer1']);
+            empty($data['answer2']) ? true : $quizAnswerList[0]->setAnswer2($data['answer2']);
+            empty($data['answer3']) ? true : $quizAnswerList[0]->setAnswer3($data['answer3']);
+            empty($data['answer4']) ? true : $quizAnswerList[0]->setAnswer4($data['answer4']);
+            empty($data['answer5']) ? true : $quizAnswerList[0]->setAnswer5($data['answer5']);
+            $entityManager->persist($quizAnswerList[0]);
+            $entityManager->flush();
+            return new JsonResponse("QuizAnswer modifié", 200, [], true);
+        } else {
+            return new JsonResponse("QuizAnswer non trouvé", 404, [], true);
+        }
+    }
+
+    #[Route('api/quizanswer/gestion/{id}', name: 'app_quiz_answer_gestion', methods: ['PUT'])]
+    public function gestionQuizAnswer(QuizAnswerRepository $quizAnswer, Security $security, $id, Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_GESTIONNAIRE');
+        // on verifie si l'utilisateur est dans l'equipe qui a répondu au quiz
+        $user = $security->getUser();
+        $quizAnswerList = $quizAnswer->findBy(['id' => $id]);
+        if(!$user->isMember($quizAnswerList[0]->getIdTeam()->getId())){
+            return new JsonResponse("Vous n'avez pas accès à cette ressource", 403, [], true);
+        }
+        if($quizAnswerList){
+            $data = json_decode($request->getContent(), true);
+            $quizAnswerList[0]->setResult($data['result']);
+
+            $entityManager->persist($quizAnswerList[0]);
+            $entityManager->flush();
+            return new JsonResponse("QuizAnswer corrigé", 200, [], true);
         } else {
             return new JsonResponse("QuizAnswer non trouvé", 404, [], true);
         }

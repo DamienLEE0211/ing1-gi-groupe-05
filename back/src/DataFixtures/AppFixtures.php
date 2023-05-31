@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Users;
-use App\Entity\TypeUser;
 use App\Entity\DataChallenge;
 use App\Entity\DataProject;
 use App\Entity\Team;
@@ -14,6 +13,7 @@ use App\Entity\QuizAnswer;
 use App\Entity\Resources;
 use App\Entity\Gestion;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Entity\CodeEval;
 
 
 
@@ -124,6 +124,10 @@ class AppFixtures extends Fixture
         $resource->setIdProject($project);
         $manager->persist($resource);
 
+        $codeEval = new CodeEval();
+        $codeEval->setCode('code1');
+        $codeEval->setIdTeam($team);
+        $manager->persist($codeEval);
         $manager->flush();
     }
 }

@@ -6,14 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ResourcesChallengeRepository;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\ResourcesChallenge;
 
 
 class ResourcesChallengeController extends AbstractController
 {
-    #[Route('api/resourceschallenges', name: 'app_resources_challenge' , methods: ['GET'])]
+    #[Route('api/resourceschallenges', name: 'app_get_all_resources_challenge' , methods: ['GET'])]
     public function getAllResourcesChallenge(ResourcesChallengeRepository $resourcesChallenge): JsonResponse
     {
         $resourcesChallengeList = $resourcesChallenge->findAll();
@@ -53,7 +54,7 @@ class ResourcesChallengeController extends AbstractController
     }
 
     #[Route('api/resourceschallenge', name: 'app_resources_challenge_post', methods: ['POST'])]
-    public function postResourcesChallenge(ResourcesChallengeRepository $resourcesChallenge, Security $security, Request $request, EntityManager $entityManager): JsonResponse
+    public function postResourcesChallenge(ResourcesChallengeRepository $resourcesChallenge, Security $security, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $user = $security->getUser();
         if(!$user->hasRole('ROLE_STUDENT')){
@@ -72,7 +73,7 @@ class ResourcesChallengeController extends AbstractController
     }
 
     #[Route('api/resourceschallenge/{id}', name: 'app_resources_challenge_delete', methods: ['DELETE'])]
-    public function deleteResourcesChallenge(ResourcesChallengeRepository $resourcesChallenge, Security $security, Request $request, EntityManager $entityManager, $id): JsonResponse
+    public function deleteResourcesChallenge(ResourcesChallengeRepository $resourcesChallenge, Security $security, Request $request, EntityManagerInterface $entityManager, $id): JsonResponse
     {
         $user = $security->getUser();
         if(!$user->hasRole('ROLE_STUDENT')){

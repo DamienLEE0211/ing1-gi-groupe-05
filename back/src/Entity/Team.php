@@ -31,10 +31,14 @@ class Team
     #[ORM\ManyToOne]
     private ?Users $id_leader = null;
 
+    #[ORM\OneToMany(mappedBy: 'id_team', targetEntity: CodeEval::class, orphanRemoval: true)]
+    private Collection $codeEvals;
+
     public function __construct()
     {
         $this->id_user = new ArrayCollection();
         $this->quizAnswers = new ArrayCollection();
+        $this->codeEvals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,6 +142,36 @@ class Team
     public function setIdLeader(?Users $id_leader): self
     {
         $this->id_leader = $id_leader;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CodeEval>
+     */
+    public function getCodeEvals(): Collection
+    {
+        return $this->codeEvals;
+    }
+
+    public function addCodeEval(CodeEval $codeEval): self
+    {
+        if (!$this->codeEvals->contains($codeEval)) {
+            $this->codeEvals->add($codeEval);
+            $codeEval->setIdTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCodeEval(CodeEval $codeEval): self
+    {
+        if ($this->codeEvals->removeElement($codeEval)) {
+            // set the owning side to null (unless already changed)
+            if ($codeEval->getIdTeam() === $this) {
+                $codeEval->setIdTeam(null);
+            }
+        }
 
         return $this;
     }

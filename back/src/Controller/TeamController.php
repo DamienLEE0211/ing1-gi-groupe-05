@@ -16,7 +16,7 @@ use App\Repository\UsersRepository;
 
 class TeamController extends AbstractController
 {
-    #[Route('api/teams', name: 'app_team', methods: ['GET'])]
+    #[Route('api/teams', name: 'app_get_all_team', methods: ['GET'])]
     public function getAllTeam(TeamRepository $team,Security $security): JsonResponse
     {
         $user = $security->getUser();
@@ -33,7 +33,7 @@ class TeamController extends AbstractController
         
     }
 
-    #[Route('api/team/{id}', name: 'app_team_id', methods: ['GET'])]
+    #[Route('api/team/{id}', name: 'app_get_eam_by_id', methods: ['GET'])]
     public function getTeamById(TeamRepository $team, $id , Security $security): JsonResponse
     {   
         $user = $security->getUser();
@@ -64,7 +64,7 @@ class TeamController extends AbstractController
         
     }
 
-    #[Route('api/team/{id}/members', name: 'app_team_id_members', methods: ['GET'])]
+    #[Route('api/team/{id}/members', name: 'app_get_team_members_by_id', methods: ['GET'])]
     public function getTeamMembers(TeamRepository $team, $id, Security $security): JsonResponse
     {
         $user = $security->getUser();

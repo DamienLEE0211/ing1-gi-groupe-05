@@ -8,15 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Resources;
 
 
 class ResourcesController extends AbstractController
 {
-    #[Route('api/resources', name: 'app_resources', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admins can access this resource')]
+    #[Route('api/resources', name: 'app_get_all_resources', methods: ['GET'])]
     public function getAllResources(ResourcesRepository $resources): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -30,7 +30,7 @@ class ResourcesController extends AbstractController
         
     }
 
-    #[Route('api/resource/{id}', name: 'app_resources_id', methods: ['GET'])]
+    #[Route('api/resource/{id}', name: 'app_get_resource_by_id', methods: ['GET'])]
     public function getResourcesById(ResourcesRepository $resources, $id): JsonResponse
     {
         $resourcesList = $resources->findBy(['id' => $id]);
@@ -47,7 +47,7 @@ class ResourcesController extends AbstractController
         
     }
 
-    #[Route('api/resource/project/{projetId}', name: 'app_resources_id', methods: ['GET'])]
+    #[Route('api/resource/project/{projetId}', name: 'app_get_all_resources_by_idProject', methods: ['GET'])]
     public function getResourcesByProjetId(ResourcesRepository $resources, $projetId): JsonResponse
     {
         $resourcesList = $resources->findBy(['projetId' => $projetId]);
@@ -76,7 +76,7 @@ class ResourcesController extends AbstractController
         return new JsonResponse("Ressource ajoutée", 201, [], true);
     }
 
-    #[Route('api/resource/{id}', name: 'app_resources_delete', methods: ['DELETE'])]
+    #[Route('api/resource/{id}', name: 'app_resources_delete_by_id', methods: ['DELETE'])]
     public function deleteResources(ResourcesRepository $resources, $id, EntityManagerInterface $entityManager, Security $security): JsonResponse
     {
         $user = $security->getUser();
@@ -92,5 +92,7 @@ class ResourcesController extends AbstractController
             return new JsonResponse("Ressource non trouvée", 404, [], true);
         }
     }
+
+
 
 }
