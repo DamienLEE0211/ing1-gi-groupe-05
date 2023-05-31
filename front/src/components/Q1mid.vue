@@ -1,13 +1,3 @@
-<script>
-export default {
-  data() {
-    return {
-      teams: ["nom équipe 1", "nom équipe 2", "nom équipe 3"],
-    };
-  },
-};
-</script>
-
 <template>
   <div class="Q1-mid">
     <div id="container-classement">
@@ -18,6 +8,15 @@ export default {
 
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      teams: ["nom équipe 1", "nom équipe 2", "nom équipe 3"],
+    };
+  },
+};
+</script>
 <style>
 .Q1-mid{
   gap: 0;
