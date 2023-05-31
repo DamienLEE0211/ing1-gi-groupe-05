@@ -13,5 +13,12 @@
   }
 }
 </style>
-<script setup>
+<script>
+import { defineComponent } from 'vue'
+import MenuHeader from '../../components/MenuHeader.vue'
+import Footer from '../../components/Footer.vue'
+
+export default defineComponent({
+  components: { Footer, MenuHeader }
+})
 </script>

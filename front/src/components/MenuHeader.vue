@@ -13,7 +13,7 @@
 
       <v-btn size="x-large" @click="this.$router.push('/data-battles')">Data battle</v-btn>
 
-      <v-btn value="Connexion" color="primary" variant="elevated" mx="12" size="x-large" @click="connecte">Connexion</v-btn>
+      <v-btn value="Connexion" color="primary" variant="elevated" mx="12" size="x-large" @click="connecte">Mon compte</v-btn>
     </template>
   </v-app-bar>
 </template>

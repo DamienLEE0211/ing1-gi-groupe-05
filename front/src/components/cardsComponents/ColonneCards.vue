@@ -1,8 +1,9 @@
 <template>
-  <div class="containerGlobal">
-    <RowCards v-if="doneeTest2.length !== 0" v-for="donnee in tabDonne" :data=donnee :type=type />
+  <v-card class="containerGlobal ma-5" variant="outlined" color="white" width="97.8%">
+    <p class="text-h3 ma-3" style="text-align: center">Vos challenges</p>
+    <RowCards v-if="donneeTest.length !== 0" v-for="donnee in tabDonne" :data=donnee :type=type :gestion=urlRecup() />
     <p v-else style="color: white; font-size: large; text-align: center">Aucun évènement disponible pour l'instant !</p>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -10,7 +11,7 @@ import CardDirection from './CardDirection.vue'
 import RowCards from './RowCards.vue'
 
 export default {
-  name: 'TabCards',
+  name: 'ColonneCards',
   components: { RowCards, CardDirection },
   data() {
     return {
@@ -58,51 +59,15 @@ export default {
           type: 'Data Challenge'
         }
       ],
-      doneeTest2: [
-      {
-        title: 'Projet 1',
-        lien: 'https://img.freepik.com/free-photo/space-background-realistic-starry-night-cosmos-shining-stars-milky-way-stardust-color-galaxy_1258-154643.jpg',
-        idEvent: '846se45fez6cds',
-        idProjet: 'xxxxxxx',
-        type: 'projet'
-      },
-      {
-        title: 'Projet 2',
-        lien: 'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg',
-        idEvent: '95ds2dces',
-        idProjet: 'xxxxxxx',
-        type: 'projet'
-      },
-      {
-        title: 'Projet 3',
-        lien: 'https://png.pngtree.com/illustrations/20190327/ourmid/pngtree-cure-starry-sky-night-sky-star-png-image_38228.jpg',
-        idEvent: 'ds2148zef',
-        idProjet: 'xxxxxxx',
-        type: 'projet'
-      },
-      {
-        title: 'Projet 4',
-        lien: 'https://img.freepik.com/free-photo/space-background-realistic-starry-night-cosmos-shining-stars-milky-way-stardust-color-galaxy_1258-154643.jpg',
-        idEvent: '846se45fez6cds',
-        idProjet: 'xxxxxxx',
-        type: 'projet'
-      },
-      {
-        title: 'Projet 5',
-        lien: 'https://images.ctfassets.net/hrltx12pl8hq/3j5RylRv1ZdswxcBaMi0y7/b84fa97296bd2350db6ea194c0dce7db/Music_Icon.jpg',
-        idEvent: '95ds2dces',
-        idProjet: 'xxxxxxx',
-        type: 'projet'
-      }
-      ],
       tabDonne: []
     }
   },
   props: {
-    type: String
+    type: String,
+    id: String
   },
   mounted() {
-    let data = this.doneeTest2;
+    let data = this.donneeTest;
     let nbrLigne = Math.floor(data.length / 5);
     if (data.length % 5 !== 0){
       nbrLigne++;
@@ -111,6 +76,11 @@ export default {
       this.tabDonne.push(data.slice(i*5,(i+1)*5));
     }
     console.log(this.tabDonne);
+  },
+  methods: {
+    urlRecup(){
+      return "/gestionnaire/"+this.id+"/"
+    }
   }
 }
 </script>

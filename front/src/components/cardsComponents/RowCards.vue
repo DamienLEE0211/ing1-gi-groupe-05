@@ -1,17 +1,24 @@
 <template>
   <div class="container">
     <CardDirection
-      v-if="type != 'All'"
+      v-if="type != 'All' && type != 'projet'"
       v-for="item in data"
       :titre=item.title
-      :chemin= cheminConca(item.id)
+      :chemin= cheminConca(item.id,vide)
+      :lienimage=item.lien
+    />
+    <CardDirection
+      v-else-if="type == 'projet'"
+      v-for="item in data"
+      :titre=item.title
+      :chemin= cheminConca(item.idEvent,item.idProjet)
       :lienimage=item.lien
     />
     <CardDirection
       v-else
       v-for="item in data"
       :titre=item.title
-      :chemin= cheminConca(item.id)
+      :chemin= cheminConca(item.id,vide)
       :lienimage=item.lien
       :sous-titre=item.type
     />
@@ -25,15 +32,25 @@ export default {
   name: 'RowCards',
   components: { CardDirection },
   data() {
-    return {}
+    return {
+      vide: null
+    }
   },
   props: {
     data: Array,
+    gestion: String,
     type: String
   },
   methods: {
-    cheminConca(id){
-      return "/event/"+id;
+    cheminConca(idEvent, idProjet){
+     if (this.type == "projet") {
+       console.log(this.gestion+idEvent+"/"+idProjet)
+       return this.gestion+idEvent+"/"+idProjet
+     } else if (this.gestion != null) {
+        return this.gestion+idEvent;
+      } else {
+        return "/event/"+idEvent;
+      }
     }
   }
 }

@@ -1,17 +1,37 @@
 <template>
-  <div class="about">
-    <h1>Page de modification des informations de l'utilisateur [U2]</h1>
+  <div
+    :style="{ background: $vuetify.theme.themes.light.colors.primary }"
+    style="flex-direction: column"
+    class="d-flex"
+  >
+    <MenuHeader />
+
+    <modif-info-perso :type=type />
+    <v-btn width="10%" style="margin: 20px auto" @click="$router.back()">Retour</v-btn>
+    <Footer class="align-self-end" />
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+<script>
+import { defineComponent } from 'vue'
+
+// Components
+import MenuHeader from '../../components/MenuHeader.vue'
+import Footer from '../../components/Footer.vue'
+import ModifInfoPerso from '../../components/utilisateur/modifInfoPerso.vue'
+
+export default defineComponent({
+  name: 'ModifInfo',
+
+  components: {
+    ModifInfoPerso,
+    Footer,
+    MenuHeader
+  },
+  data() {
+    return {
+      type: "admin"
+    }
   }
-}
-</style>
-<script setup>
+})
 </script>
