@@ -36,10 +36,82 @@
 <div class="Q1-mid">
   <div id="container-classement">
     <h1>Informations personnels</h1>
-    <h2>Prénom nom</h2>
-    <h2>Ecole / Entreprise</h2>
-    <h2>Email</h2>
-    <h2>Numéro</h2>
+      <div class="info-container">
+          <div class="info-row">
+              <div class="info-item">
+                  <label for="prenom">Prenom:</label>
+                  <span>{{ originalPrenom }}</span>
+              </div>
+              <div class="info-item">
+                  <label for="nom">Nom:</label>
+                  <span>{{ originalNom }}</span>
+              </div>
+              <div class="info-item">
+                  <button @click="showPopup('prenom-nom')" class="btn btn-primary">Edit Information</button>
+              </div>
+          </div>
+
+          <div class="info-row">
+              <div class="info-item">
+                  <label for="ecole">Ecole:</label>
+                  <span>{{ originalEcole }}</span>
+              </div>
+              <div class="info-item">
+                  <button @click="showPopup('ecole')" class="btn btn-primary">Edit Ecole</button>
+              </div>
+          </div>
+          <div class="info-row">
+              <div class="info-item">
+                  <label for="mail">Mail:</label>
+                  <span>{{ originalMail }}</span>
+              </div>
+              <div class="info-item">
+                  <button @click="showPopup('mail')" class="btn btn-primary">Edit Mail</button>
+              </div>
+          </div>
+
+          <div class="info-row">
+              <div class="info-item">
+                  <label for="number">Number:</label>
+                  <span>{{ originalNumber }}</span>
+              </div>
+              <div class="info-item">
+                  <button @click="showPopup('number')" class="btn btn-primary">Edit Number</button>
+              </div>
+          </div>
+
+          <!-- Popup -->
+          <div v-if="isPopupVisible" class="popup-overlay">
+              <div class="popup-content">
+                  <!-- Content of the popup -->
+                  <h3>Edit Information</h3>
+                  <div v-if="currentField === 'prenom-nom'" class="form-group">
+                      <label for="prenom">Prenom: </label>
+                      <input type="text" v-model="editedPrenom" class="form-control" id="prenom" placeholder="Enter your prenom">
+                  </div>
+                  <div v-if="currentField === 'prenom-nom'" class="form-group">
+                      <label for="nom">Nom: </label>
+                      <input type="text" v-model="editedNom" class="form-control" id="nom" placeholder="Enter your nom">
+                  </div>
+                  <div v-if="currentField === 'ecole'" class="form-group">
+                      <label for="ecole">Ecole: </label>
+                      <input type="text" v-model="editedEcole" class="form-control" id="ecole" placeholder="Enter your ecole">
+                  </div>
+                  <div v-if="currentField === 'mail'" class="form-group">
+                      <label for="mail">Mail: </label>
+                      <input type="email" v-model="editedMail" class="form-control" id="mail" placeholder="Enter your mail">
+                  </div>
+                  <div v-if="currentField === 'number'" class="form-group">
+                      <label for="number">Number: </label>
+                      <input type="text" v-model="editedNumber" class="form-control" id="number" placeholder="Enter your number">
+                  </div>
+
+                  <button @click="saveChanges" class="btn btn-success">Save</button>
+                  <button @click="hidePopup" class="btn btn-secondary">Cancel</button>
+              </div>
+          </div>
+  </div>
+
   </div>
 
 </div>
@@ -61,20 +133,17 @@
           {text: 'QCM', url: 'qcm.html'},
           {text: 'Data Challenge', url: 'datachallenge.html'}
         ],
-        project1: {
-          image: "path/to/your/image.jpg",
-        },
-        resources: [
-          { id: 1, name: "lien 1", link: "https://example.com/link1" },
-          { id: 2, name: "lien 2", link: "https://example.com/link2" },
-          { id: 3, name: "lien 3", link: "https://example.com/link3" },
-          { id: 4, name: "lien 4", link: "https://example.com/link4" },
-        ],
-        projectName: "Nom projet",
-        projectDescription: "Description du projet",
-        captainName: "nom capitaine",
-        teammate2: "coéquipé 2",
-        teammate3: "coéquipé 3",
+
+          isPopupVisible: false,
+          editedPrenom: '',
+          editedNom: '',
+          editedEcole: '',
+          originalPrenom: 'John',
+          originalNom: 'Doe',
+          originalEcole: 'Sample Ecole',
+          originalMail: 'example@example.com',
+          originalNumber: '1234567890',
+          currentField: '',
 
         webmasters: [
           {id: 1, name: "L'association", fontSize: 18},
@@ -83,11 +152,40 @@
         ]
       };
     },
-    methods: {
-      buttonClicked() {
-        alert('Button clicked!');
-      }
-    },
+      methods: {
+          showPopup(field) {
+              this.currentField = field;
+              this.isPopupVisible = true;
+
+              if (field === 'prenom-nom') {
+                  this.editedPrenom = this.originalPrenom;
+                  this.editedNom = this.originalNom;
+              } else if (field === 'ecole') {
+                  this.editedEcole = this.originalEcole;
+              } else if (field === 'mail') {
+                  this.editedMail = this.originalMail;
+              } else if (field === 'number') {
+                  this.editedNumber = this.originalNumber;
+              }
+
+          },
+          hidePopup() {
+              this.isPopupVisible = false;
+          },
+          saveChanges() {
+              if (this.currentField === 'prenom-nom') {
+                  this.originalPrenom = this.editedPrenom;
+                  this.originalNom = this.editedNom;
+              } else if (this.currentField === 'ecole') {
+                  this.originalEcole = this.editedEcole;
+              } else if (this.currentField === 'mail') {
+                  this.originalMail = this.editedMail;
+              } else if (this.currentField === 'number') {
+                  this.originalNumber = this.editedNumber;
+              }
+              this.isPopupVisible = false;
+          },
+      },
   }).mount('body');
 </script>
 
