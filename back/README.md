@@ -1,6 +1,12 @@
 version php >= 8.1
-```
-test
+```bash
+apt install php-mysql php-curl
+sudo apt install php-mysql php-curl
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-install php8.2
+sudo apt-get install php8.2
+php --version
 ```
 
 Installer composer 

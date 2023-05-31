@@ -14,8 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class TypeUserController extends AbstractController
 {
 
-    #[Route('api/userType/admin/users', name: 'app_admin_users', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admin can access this resource')]
+    #[Route('api/userType/admin/users', name: 'app_get_all_admin', methods: ['GET'])]
     public function getUsersByType(UsersRepository $usersrepository): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -33,8 +32,7 @@ class TypeUserController extends AbstractController
 
     }
 
-    #[Route('api/userType/gestionnaire/users', name: 'app_gestionnaire_users', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admin can access this resource')]
+    #[Route('api/userType/gestionnaire/users', name: 'app_get_all_gestionnaires2', methods: ['GET'])]
     public function getUsersByTypeGestionnaire(UsersRepository $usersrepository): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -53,8 +51,8 @@ class TypeUserController extends AbstractController
 
     }
 
-    #[Route('api/userType/student/users', name: 'app_role_users', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admin can access this resource')]
+    #[Route('api/userType/student/users', name: 'app_get_all_student', methods: ['GET'])]
+
     public function getUsersByTypeStudent(UsersRepository $usersrepository ): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

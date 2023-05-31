@@ -19,8 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UsersController extends AbstractController
 {
-    #[Route('api/users', name: 'app_users', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admins can access this resource', methods : ['GET'])]
+    #[Route('api/users', name: 'app_get_users', methods: ['GET'])]
     public function getAllUsers(UsersRepository $usersrepository, SerializerInterface $serializer ): JsonResponse 
     {
         // on utilise isGranted pour vérifier que l'utilisateur a bien le role admin
@@ -36,7 +35,7 @@ class UsersController extends AbstractController
 
 
 
-    #[Route('api/currentuser', name: 'app_users_current', methods: ['GET'])]
+    #[Route('api/currentuser', name: 'app_current_user', methods: ['GET'])]
     public function getCurrentUser(UsersRepository $usersrepository, SerializerInterface $serializer, Security $security): JsonResponse
     {
 
@@ -52,8 +51,7 @@ class UsersController extends AbstractController
 
     }
 
-    #[Route('api/user', name: 'app_users_create', methods: ['POST'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admin can access this resource')]
+    #[Route('api/user', name: 'app_create_user', methods: ['POST'])]
     public function createUser(UsersRepository $usersrepository, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -82,7 +80,6 @@ class UsersController extends AbstractController
     }
 
     #[Route('api/user/{id}', name: 'app_users_update', methods: ['PUT'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admins can access this resource')]
     public function updateUser(UsersRepository $usersrepository, SerializerInterface $serializer, Request $request, int $id): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -95,7 +92,6 @@ class UsersController extends AbstractController
     }
 
     #[Route('api/user', name: 'app_users_delete', methods: ['DELETE'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admins can access this resource')]
     public function deleteUser(UsersRepository $usersrepository, Request $request): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -119,7 +115,7 @@ class UsersController extends AbstractController
         }
     }
 
-    #[Route('api/currentuser/team', name: 'app_users_team', methods: ['GET'])]
+    #[Route('api/currentuser/team', name: 'app_current_user_teams', methods: ['GET'])]
     public function getTeam(UsersRepository $usersrepository, Security $security): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_STUDENT');
@@ -134,8 +130,7 @@ class UsersController extends AbstractController
     }
 
     // les gestionnaires
-    #[Route('api/user/gestionnaire', name: 'app_gestionnaires', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only admins can access this resource')]
+    #[Route('api/user/gestionnaire', name: 'app_get_gestionnaires', methods: ['GET'])]
     public function getAllGestionnaire(UsersRepository $usersrepository, SerializerInterface $serializer): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -150,8 +145,8 @@ class UsersController extends AbstractController
         $data = json_encode($data);
         return new JsonResponse($data, 200, [], true);
     }
-    #[Route('api/user/{id}', name: 'app_users_id', methods: ['GET'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Only users can access this resource')]
+
+    #[Route('api/user/{id}', name: 'app_get_users_by_id', methods: ['GET'])]
     public function getOneUser(UsersRepository $usersrepository, SerializerInterface $serializer, int $id, Security $security): JsonResponse
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -166,6 +161,5 @@ class UsersController extends AbstractController
         return new JsonResponse($data, 200, [], true);
 
     }
-
 
 }

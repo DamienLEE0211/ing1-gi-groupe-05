@@ -58,9 +58,10 @@ class Gestion
         ];
     }
 
-    public function toArray2(): ?DataChallenge
+    public function toArray2(): array
     {
-        return $this->getIdChallenge()->toArray();
+        $challenge = $this->getIdChallenge();
+        return $challenge->toArray();
         
     }
 
