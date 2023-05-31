@@ -25,6 +25,7 @@ import AccueilProjet from '../views/participantViews/projetViews/AccueilProjet.v
 import ClassementQCM from '../views/participantViews/projetViews/ClassementQCM.vue'
 import MessageProjet from '../views/participantViews/projetViews/MessageProjet.vue'
 import AnalyseView from '../views/analyseViews/AnalyseView.vue'
+import GestionnaireAnalyseView from '../views/analyseViews/GestionnaireAnalyseView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -145,6 +146,11 @@ const router = createRouter({
     {
       path: '/:projet/analyse',
       component: AnalyseView
+    },
+
+    {
+      path: '/gestionnaire/:id/:event/:projet/analyse',
+      component: GestionnaireAnalyseView
     }
   ]
 })
