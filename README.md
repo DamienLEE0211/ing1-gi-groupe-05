@@ -1,5 +1,7 @@
 # ing1-gi-groupe-05
-Pour utiliser VueJs ,il faut d'abord installer NodeJs:
+Pour acceder au site, il faut d'abord installer VueJs:
+
+Pour cela, il faut d'abord installer NodeJs:
 Windows:
  -Installer la dernière version LTS(disponible sur le site officiel de NodeJs)
  -Apres installation, verifier dans l'invite de commande (ou powershell) la version de Node ainsi que la version du node package manager(npm):
@@ -47,3 +49,5 @@ Enfin pour demarrer l'application, decompresser le zip de l'application et se pl
 puis demarrer l'application:
 
 ``` npm run dev```
+
+Pour démarrer l'api rest servant de back-end, se réferrer au README se trouvant dans le dossier back.
