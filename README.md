@@ -11,7 +11,9 @@ Linux:
  -Installer curl: 
  ```bash sudo apt install curl```
  -Installer NodeJs avec les commandes suivantes:
+ 
  ```bash curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -```  (avec setup_14.x à adapter selon la distribution binaire nodejs)
+ 
  puis :
  ```bash sudo apt-get install -y nodejs```
  Et enfin verifier la version avec les mêmes commandes que pour windows (Node --version et  npm --version)
