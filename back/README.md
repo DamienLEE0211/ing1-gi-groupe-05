@@ -55,6 +55,8 @@ Lancer le serveur (il faut possiblement installer d'autres extensions php)
 symfony server:start
 ```
 Documentation sur les différentes routes:
+
+
 get_all_codes
 -------------
 
