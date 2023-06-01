@@ -42,13 +42,46 @@ class AppFixtures extends Fixture
         $user->setFirstname('firstname' );
         $user->setRoles(['ROLE_STUDENT']);
         $user->setSchoolCompany('school');
+        $user->setCity('city');
+        $user->setStudyLevel('L1');
         // creation du compte: date d'aujourdhuui
         $user->setCreationDate(new \DateTime('now'));
         $gestion = new Gestion();
-        
+        $manager->persist($user);
+        $team->setIdLeader($user);
+        $team->addIdUser($user);
+
+        $user = new Users();
+        $user->setEmail('corentin3@gmail.com');
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
+        $user ->setLastname('lastname' );
+        $user->setFirstname('firstname' );
+        $user->setRoles(['ROLE_STUDENT']);
+        $user->setSchoolCompany('school');
+        $user->setCity('city');
+        $user->setStudyLevel('L1');
+        // creation du compte: date d'aujourdhuui
+        $user->setCreationDate(new \DateTime('now'));
+        $gestion = new Gestion();
+        $manager->persist($user);
+        $team->addIdUser($user);
+
+        $user = new Users();
+        $user->setEmail('corentin2@gmail.com');
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
+        $user ->setLastname('lastname' );
+        $user->setFirstname('firstname' );
+        $user->setRoles(['ROLE_STUDENT']);
+        $user->setSchoolCompany('school');
+        $user->setCity('city');
+        $user->setStudyLevel('L1');
+
+
+        // creation du compte: date d'aujourdhuui
+        $user->setCreationDate(new \DateTime('now'));
+        $gestion = new Gestion();
         $manager->persist($user);
         $team ->addIdUser($user);
-        $team->addIdUser($user);
 
 
         $user = new Users();
@@ -61,8 +94,7 @@ class AppFixtures extends Fixture
         $user->setFirstname('firstname' );
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
-        $team->setIdLeader($user);
-        $team->addIdUser($user);
+
         
         $user = new Users();
         $user->setEmail('corentin.calmels@gmail.com');
@@ -75,7 +107,6 @@ class AppFixtures extends Fixture
         $user->setRoles(['ROLE_GESTIONNAIRE']);
         $gestion->setIdUser($user);
         $manager->persist($user);
-        $team->addIdUser($user);
         
         $challenge = new DataChallenge();
         $challenge->setName('challenge1');
