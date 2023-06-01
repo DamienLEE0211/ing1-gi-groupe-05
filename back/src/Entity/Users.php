@@ -53,6 +53,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'id_users', targetEntity: Gestion::class, orphanRemoval: true)]
     private Collection $gestions;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $study_level = null;
+
 
     public function hasRole(string $role): bool
     {
@@ -95,6 +101,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             'creation_date' => $this->getCreationDate(),
             'deletion_date' => $this->getDeletionDate(),
             'role' => $this->getRoles(),
+            'city' => $this->getCity(),
+            'study_level' => $this->getStudyLevel(),
             'teams' => $teams
         ];
     }
@@ -321,6 +329,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             }
         }
         return false;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getStudyLevel(): ?string
+    {
+        return $this->study_level;
+    }
+
+    public function setStudyLevel(?string $study_level): self
+    {
+        $this->study_level = $study_level;
+
+        return $this;
     }
 
 
