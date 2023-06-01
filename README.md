@@ -1,5 +1,5 @@
 # ing1-gi-groupe-05
-Pour acceder au site, il faut d'abord installer VueJs:
+Pour accéder au site, il faut d'abord installer VueJs:
 
 Pour cela, il faut d'abord installer NodeJs:
 Windows:
@@ -50,4 +50,5 @@ puis demarrer l'application:
 
 ``` npm run dev```
 
-Pour démarrer l'api rest servant de back-end, se réferrer au README se trouvant dans le dossier back.
+Pour démarrer l'api rest servant de back-end, se référer au README se trouvant dans le dossier back.
+Pour démarrer l'api rest java pour l'analyse de code, se référer au README se trouvant dans le dossier java.
