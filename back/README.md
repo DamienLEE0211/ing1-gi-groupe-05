@@ -31,7 +31,7 @@ Installer les dépendances
 composer require symfony/orm-pack
 ```
 
-Créer la base de données (apres avoir configurer le .env)
+Créer la base de données (apres avoir configuré le .env)
 ```bash
 php bin/console doctrine:database:create
 ```
