@@ -25,6 +25,10 @@ import AccueilProjet from '../views/participantViews/projetViews/AccueilProjet.v
 import ClassementQCM from '../views/participantViews/projetViews/ClassementQCM.vue'
 import MessageProjet from '../views/participantViews/projetViews/MessageProjet.vue'
 import AnalyseView from '../views/analyseViews/AnalyseView.vue'
+import GestionnaireAnalyseView from "../views/analyseViews/GestionnaireAnalyseView.vue";
+import CreaUserView from "../views/adminViews/userViews/CreaUserView.vue";
+import ModifUserView from "../views/adminViews/userViews/ModifUserView.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -81,6 +85,14 @@ const router = createRouter({
     {
       path: '/admin/:id/nouveau-evenement',
       component: CreaChallengeView
+    },
+    {
+      path: '/admin/:id/modification-utilisateur',
+      component: ModifUserView
+    },
+    {
+      path: '/admin/:id/nouveau-utilisateur',
+      component: CreaUserView
     },
     {
       path: '/admin/:id/:event/modification-evenement',
@@ -145,6 +157,10 @@ const router = createRouter({
     {
       path: '/:projet/analyse',
       component: AnalyseView
+    },
+    {
+      path: '/gestionnaire/:id/:event/:projet/analyse',
+      component: GestionnaireAnalyseView
     }
   ]
 })

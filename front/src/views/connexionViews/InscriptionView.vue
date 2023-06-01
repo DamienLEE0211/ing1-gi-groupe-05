@@ -1,17 +1,30 @@
 <template>
-  <div class="about">
-    <h1>Page d'inscription [C2]</h1>
+  <div
+    :style="{ background: $vuetify.theme.themes.light.colors.primary }"
+    style="flex-direction: column"
+    class="d-flex"
+  >
+    <MenuHeader />
+    <FormInscription/>
+    <Footer class="align-self-end" />
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+<script>
+import { defineComponent } from 'vue'
+
+// Components
+import MenuHeader from '../../components/MenuHeader.vue'
+import Footer from '../../components/Footer.vue'
+import FormInscription from '../../components/connexionInscription/FormInscription.vue'
+
+export default defineComponent({
+  name: 'ConnexionView',
+
+  components: {
+    FormInscription,
+    Footer,
+    MenuHeader
   }
-}
-</style>
-<script setup>
+})
 </script>
