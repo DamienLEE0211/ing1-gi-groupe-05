@@ -1,4 +1,5 @@
 version php >= 8.1
+installation de php8.2:
 ```bash
 apt install php-mysql php-curl
 sudo apt install php-mysql php-curl
@@ -49,7 +50,7 @@ Installer php-xml
 sudo apt install php8.2-xml
 ```
 
-Lancer le serveur
+Lancer le serveur (il faut possiblement installer d'autres extensions php)
 ```bash
 symfony server:start
 ```
